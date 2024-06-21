@@ -4,19 +4,19 @@ const fetch = require('node-fetch');
 const app = express();
 const port = 3001;
 
-// Middleware to enable CORS
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, apiurl'); // Add 'apiurl' header
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, apiurl');
   if (req.method === 'OPTIONS') {
-    res.sendStatus(200); // Respond to OPTIONS requests with HTTP OK status
+    res.sendStatus(200); 
   } else {
     next();
   }
 });
 
-// Route to proxy server
+
 app.get('/proxyserver', async (req, res) => {
   try {
     const apiUrl = req.headers.apiurl;
@@ -33,7 +33,7 @@ app.get('/proxyserver', async (req, res) => {
   }
 });
 
-// Start the server
+
 app.listen(port, () => {
   console.log(`Proxy server listening at http://localhost:${port}`);
 });
